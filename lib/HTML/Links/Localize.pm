@@ -8,7 +8,7 @@ use File::Copy;
 
 use vars qw($VERSION);
 
-$VERSION = "0.2.2";
+$VERSION = "0.2.3";
 
 # Two utility functions
 sub is_older
@@ -291,14 +291,14 @@ sub process_dir_tree
 
 =head1 NAME
 
-HTML::Hard::Disk - Convert HTML Files to be used on a hard disk
+HTML::Links::Localize - Convert HTML Files to be used on a hard disk
 
 =head1 SYNOPSIS
 
-    use HTML::Hard::Disk;
+    use HTML::Links::Localize;
 
     my $converter = 
-        HTML::Hard::Disk->new(
+        HTML::Links::Localize->new(
             'base_dir' => "/var/www/html/shlomi/Perl/Newbies/lecture4/",
             'dest_dir' => "./dest"
         );
@@ -311,7 +311,7 @@ HTML::Hard::Disk - Convert HTML Files to be used on a hard disk
 
 =head1 DESCRIPTION
 
-HTML::Hard::Disk converts HTML files to be used when viewing on the 
+HTML::Links::Localize converts HTML files to be used when viewing on the 
 hard disk. Namely, it converts relative links to point to "index.html"
 files in their directories.
 
