@@ -1,0 +1,19 @@
+---
+name: HTML-Links-Localize
+version: 0.2.5
+author:
+  - 'Shlomi Fish E<lt>shlomif@iglu.org.ilE<gt>'
+abstract: Convert HTML Files to be used on a hard disk
+license: bsd
+resources:
+  license: http://www.opensource.org/licenses/bsd-license.php
+requires:
+  HTML::Parser: 0
+provides:
+  HTML::Links::Localize:
+    file: lib/HTML/Links/Localize.pm
+    version: 0.2.5
+generated_by: Module::Build version 0.2805
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
