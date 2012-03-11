@@ -1,6 +1,7 @@
 package HTML::Links::Localize;
 
 use strict;
+use warnings;
 
 use HTML::TokeParser;
 use File::Find;
@@ -8,7 +9,7 @@ use File::Copy;
 
 use vars qw($VERSION);
 
-$VERSION = "0.2.6";
+$VERSION = "0.2.7";
 
 # Two utility functions
 sub _is_older
@@ -93,7 +94,7 @@ sub process_content
 {
     my $self = shift;
 
-    my $file = shift;
+    my $fh = shift;
 
     my $out_content = "";
 
@@ -101,7 +102,7 @@ sub process_content
         $out_content .= join("", @_);
     };
    
-    my $parser = HTML::TokeParser->new($file);
+    my $parser = HTML::TokeParser->new($fh);
     while (my $token = $parser->get_token())
     {
         my $type = $token->[0];
@@ -174,22 +175,24 @@ sub process_content
         }
     }
 
-    return $out_content;    
+    return $out_content;
 }
 
 sub process_file
 {
     my $self = shift;
-    my $file = shift;
+    my $filename = shift;
 
     my $dest_dir = $self->_get_dest_dir();
     my $src_dir = $self->_get_base_dir();
-    local (*I, *O);
-    open I, "<$src_dir/$file" || die "Cannot open '$src_dir/$file' - $!";
-    open O, ">$dest_dir/$file" || die "Cannot open '$dest_dir/$file' for writing- $!";
-    print O $self->process_content(\*I);
-    close(I);
-    close(O);
+
+    open my $in, '<', "$src_dir/$filename"
+        or die "Cannot open '$src_dir/$filename' - $!";
+    open my $out, '>', "$dest_dir/$filename" 
+        or die "Cannot open '$dest_dir/$filename' for writing- $!";
+    print {$out} $self->process_content($in);
+    close($in);
+    close($out);
 }
 
 sub process_dir_tree
@@ -344,11 +347,11 @@ in a make-like fashion.
 
 =head1 AUTHOR
 
-Shlomi Fish E<lt>shlomif@iglu.org.ilE<gt>
+Shlomi Fish, L<http://www.shlomifish.org/>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2004, Shlomi Fish. All rights reserved.
+Copyright 2004, Shlomi Fish.
 
 You can use, modify and distribute this module under the terms of the MIT X11
 license. ( L<http://www.opensource.org/licenses/mit-license.php> ).

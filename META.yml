@@ -1,19 +1,36 @@
 ---
-name: HTML-Links-Localize
-version: 0.2.6
+abstract: 'Convert HTML Files to be used on a hard disk'
 author:
-  - 'Shlomi Fish E<lt>shlomif@iglu.org.ilE<gt>'
-abstract: Convert HTML Files to be used on a hard disk
+  - unknown
+build_requires:
+  Test::More: 0
+configure_requires:
+  Module::Build: 0
+dynamic_config: 1
+generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.120630'
+keywords:
+  - hard-disk
+  - html
+  - index
+  - links
+  - local
+  - localise
+  - localize
+  - view
 license: mit
-resources:
-  license: http://www.opensource.org/licenses/mit-license.php
-requires:
-  HTML::Parser: 0
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: HTML-Links-Localize
 provides:
   HTML::Links::Localize:
     file: lib/HTML/Links/Localize.pm
-    version: 0.2.6
-generated_by: Module::Build version 0.32
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
-  version: 1.2
+    version: v0.2.7
+requires:
+  HTML::Parser: 0
+  strict: 0
+  warnings: 0
+resources:
+  license: http://www.opensource.org/licenses/mit-license.php
+  repository: http://bitbucket.org/shlomif/perl-html-links-localize
+version: v0.2.7

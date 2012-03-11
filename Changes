@@ -1,3 +1,9 @@
+0.2.7:   Sun Mar 11 14:02:56 IST 2012
+    * Modernized t/use.t and converted it from Test.pm to Test::More.
+    * Add "use warnings;" to the core code and modernized it a little (there
+    are still many issues left).
+    * Add some dependencies, resources and keywords to Build.PL.
+
 0.2.6:   Sat Apr  4 21:16:50 IDT 2009
     * Fixed the html-to-hd script to use HTML::Links::Localize instead of
     HTML::Hard::Disk.
@@ -13,9 +19,9 @@
 
 0.2.4:
 
-Added the Changes file to the MANIFEST.
+    * Added the Changes file to the MANIFEST.
 
 0.2.3:
 
-Fixed a documentation bug that said HTML::Hard::Disk instead of 
-HTML::Links::Localize.
+    * Fixed a documentation bug that said HTML::Hard::Disk instead of 
+    HTML::Links::Localize.
