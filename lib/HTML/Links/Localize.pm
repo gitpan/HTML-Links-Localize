@@ -3,13 +3,15 @@ package HTML::Links::Localize;
 use strict;
 use warnings;
 
+use 5.008;
+
 use HTML::TokeParser;
 use File::Find;
 use File::Copy;
 
 use vars qw($VERSION);
 
-$VERSION = "0.2.7";
+$VERSION = "0.2.8";
 
 # Two utility functions
 sub _is_older
@@ -66,7 +68,7 @@ sub _set_dest_dir
     my $dest_dir = shift;
 
     $self->{'dest_dir'} = $dest_dir;
-    
+
     return 0;
 }
 
@@ -101,7 +103,7 @@ sub process_content
     my $out = sub {
         $out_content .= join("", @_);
     };
-   
+
     my $parser = HTML::TokeParser->new($fh);
     while (my $token = $parser->get_token())
     {
@@ -147,7 +149,7 @@ sub process_content
                     my $value = $attr_values->{$attr};
                     if (exists($process_attrs->{$attr}))
                     {
-                        # If it's a local link that ends with slash - 
+                        # If it's a local link that ends with slash -
                         # then append index.html
                         if (($value !~ /^[a-z]+:/) && ($value !~ /^\//) &&
                             ($value =~ /\/(#[^#\/]*)?$/))
@@ -188,7 +190,7 @@ sub process_file
 
     open my $in, '<', "$src_dir/$filename"
         or die "Cannot open '$src_dir/$filename' - $!";
-    open my $out, '>', "$dest_dir/$filename" 
+    open my $out, '>', "$dest_dir/$filename"
         or die "Cannot open '$dest_dir/$filename' for writing- $!";
     print {$out} $self->process_content($in);
     close($in);
@@ -226,7 +228,7 @@ sub process_dir_tree
         }
         # Remove the $src_dir from the filename;
         $filename = substr($filename, length($src_dir));
-        
+
         if (-d $_)
         {
             push @dirs, $filename;
@@ -260,7 +262,7 @@ sub process_dir_tree
     };
 
     # Create the directory structure in $dest
-    
+
     $soft_mkdir->($dest_dir);
     foreach my $dir (@dirs)
     {
@@ -300,7 +302,7 @@ HTML::Links::Localize - Convert HTML Files to be used on a hard disk
 
     use HTML::Links::Localize;
 
-    my $converter = 
+    my $converter =
         HTML::Links::Localize->new(
             'base_dir' => "/var/www/html/shlomi/Perl/Newbies/lecture4/",
             'dest_dir' => "./dest"
@@ -309,12 +311,12 @@ HTML::Links::Localize - Convert HTML Files to be used on a hard disk
     $converter->process_file("mydir/myfile.html");
 
     $converter->process_dir_tree('only-newer' => 1);
-    
+
     my $new_content = $converter->process_content(\$html_text);
 
 =head1 DESCRIPTION
 
-HTML::Links::Localize converts HTML files to be used when viewing on the 
+HTML::Links::Localize converts HTML files to be used when viewing on the
 hard disk. Namely, it converts relative links to point to "index.html"
 files in their directories.
 
@@ -322,8 +324,8 @@ To use it, first initialize an instance using new:
 
 =head2 $converter = HTML::Links::Localize->new(base_dir => $base_dir, dest_dir => $dest_dir)
 
-The constructor accepts two named parameters which are mandatory. 
-C<'base_dir'> is the base directory (or source directory) for the 
+The constructor accepts two named parameters which are mandatory.
+C<'base_dir'> is the base directory (or source directory) for the
 operations. C<'dest_dir'> is the root destination directory.
 
 Afterwards, you can use the other methods.

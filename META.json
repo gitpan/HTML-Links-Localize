@@ -4,7 +4,7 @@
       "unknown"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.120630",
+   "generated_by" : "Module::Build version 0.4007, CPAN::Meta::Converter version 2.132830",
    "keywords" : [
       "hard-disk",
       "html",
@@ -37,6 +37,7 @@
       "runtime" : {
          "requires" : {
             "HTML::Parser" : "0",
+            "perl" : "5.008",
             "strict" : "0",
             "warnings" : "0"
          }
@@ -45,7 +46,7 @@
    "provides" : {
       "HTML::Links::Localize" : {
          "file" : "lib/HTML/Links/Localize.pm",
-         "version" : "v0.2.7"
+         "version" : "v0.2.8"
       }
    },
    "release_status" : "stable",
@@ -57,5 +58,5 @@
          "url" : "http://bitbucket.org/shlomif/perl-html-links-localize"
       }
    },
-   "version" : "v0.2.7"
+   "version" : "v0.2.8"
 }
